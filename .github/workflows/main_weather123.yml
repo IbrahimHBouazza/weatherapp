@@ -1,4 +1,4 @@
-name: Deploy static website to Azure Web App - weather123
+name: Deploy static website to Azure Web App - weather1234
 
 on:
   push:
@@ -20,13 +20,14 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_4C2F8410A1FB44508BEB88BFF031BCFB }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_39D7CE453AB548E79CBC3456FD08A0D5 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_3323AE3CE64F4BC5BCF21859E3BCF020 }}
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-      - name: Deploy static content to Azure Web App
+      - name: Deploy static site to Azure Web App
         uses: azure/webapps-deploy@v3
+        id: deploy-to-webapp
         with:
-          app-name: 'weather123'
+          app-name: 'weather1234'  # ⬅️ updated app name
           slot-name: 'Production'
           package: .
